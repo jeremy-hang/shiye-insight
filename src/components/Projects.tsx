@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { ArrowUpRight, X } from 'lucide-react'
+import { ArrowUpRight, ExternalLink, X } from 'lucide-react'
 
 const easeCurve = [0.16, 1, 0.3, 1] as const
 
@@ -16,6 +16,8 @@ interface Project {
   status: string
   hook: string
   desc: string
+  preview?: string
+  link?: string
   details: DetailBlock[]
 }
 
@@ -27,6 +29,7 @@ const projects: Project[] = [
     status: '开发中',
     hook: 'AI 生态与生产力工具矩阵。',
     desc: '深度筛选、结构化分类与智能推荐全球前沿 AI 学习资源、应用生态与效率工具。按实际工作场景精准打标，提供真实评测与上手门槛评估，打造高价值的智能生产力导航入口。',
+    preview: '/preview-mindscape-hub.jpg',
     details: [
       {
         label: '为什么做',
@@ -53,6 +56,8 @@ const projects: Project[] = [
     status: '开发中',
     hook: '高定制化产业与竞品情报系统。',
     desc: '自动化全网扫描行业上下游动态、商业热点与竞品厂商全景变化。基于多维模型进行实时降噪与价值萃取，帮助企业与决策者实时掌握市场脉搏，实现数据驱动的敏捷决策。',
+    preview: '/preview-pulseradar.png',
+    link: 'https://af209bf721924f0eabd49679fd63db90.bj5.agentos-app.net/',
     details: [
       {
         label: '为什么做',
@@ -150,6 +155,24 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
 
         <p className="modal-hook">{project.hook}</p>
         <p className="modal-desc">{project.desc}</p>
+
+        {project.preview && (
+          <div className="modal-preview">
+            <img src={project.preview} alt={`${project.title} 预览`} loading="lazy" />
+          </div>
+        )}
+
+        {project.link && (
+          <a
+            className="modal-live-link"
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>访问在线预览</span>
+            <ExternalLink size={13} strokeWidth={2} />
+          </a>
+        )}
 
         {project.details.map((d) => (
           <div className="modal-block" key={d.label}>

@@ -704,6 +704,48 @@ button {
   letter-spacing: 0.02em;
 }
 
+/* 弹窗内的项目预览图 */
+.modal-preview {
+  margin-top: 20px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: #f8f8fa;
+}
+
+.modal-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* 在线预览跳转按钮 */
+.modal-live-link {
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #000000;
+  text-decoration: none;
+  padding: 8px 16px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 999px;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  width: fit-content;
+}
+
+.modal-live-link:hover {
+  background-color: #000000;
+  color: #ffffff;
+  border-color: #000000;
+}
+
+.modal-live-link:hover svg {
+  stroke: #ffffff;
+}
+
 @media (max-width: 640px) {
   .modal-panel {
     padding: 28px 24px;
