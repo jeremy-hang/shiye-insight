@@ -1,0 +1,626 @@
+/* 极简黑白个人主页 CSS — 无 Tailwind，全部采用纯 CSS */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffffff;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  color: #000000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* ========== 全屏 Hero Section ========== */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+/* 背景视频 — z-index 0 在最底层 */
+.video-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ========== 顶部导航 — z-index 50, pointer-events: none 自身, auto 子项 ========== */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  pointer-events: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-inner {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar > * {
+  pointer-events: auto;
+}
+
+/* ========== 菜单衍生：包装菜单按钮 + 链接，从胶囊本体长出 ========== */
+
+.menu-wrap {
+  display: flex;
+  align-items: center;
+  margin-left: 4px; /* 贴着菜单按钮 */
+}
+
+.menu-shell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 999px;
+  backdrop-filter: blur(12px);
+  pointer-events: auto;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.menu-links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.menu-link {
+  font-size: 13px;
+  font-weight: 400;
+  color: #000000;
+  padding: 8px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  white-space: nowrap;
+  border: none;
+}
+
+.menu-link:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* 左侧：品牌 + 菜单 + 标签 */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  pointer-events: auto;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  transform: rotate(-35deg);
+}
+
+.brand-icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.brand-text {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* 菜单胶囊按钮：深灰底 + 浅灰圆形 Plus + 白字弱透明，降噪让 Logo 更突出 */
+.menu-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #000000;
+  border-radius: 999px;
+  padding: 5px 12px 5px 5px;
+}
+
+.menu-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.menu-label {
+  font-size: 11px;
+  color: #ffffff;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+/* 右侧：已清空（原保持联系按钮已删） */
+
+/* ========== 底部内容区 — z-index 30, 白色渐变 fade-up ========== */
+
+.footer {
+  position: relative;
+  z-index: 30;
+  width: 100%;
+  margin-top: auto;
+}
+
+.footer-inner {
+  width: 100%;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.footer-gradient {
+  position: relative;
+  width: 100%;
+  padding: 0;
+}
+
+.gradient-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, #ffffff 0%, rgba(255,255,255,0.8) 50%, transparent 100%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.footer-content {
+  position: relative;
+  z-index: 1;
+  padding: 40px 32px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+}
+
+/* 左侧块 */
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.subtitle-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.subtitle-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #000000;
+  flex-shrink: 0;
+}
+
+.subtitle-text {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.55);
+  font-weight: 400;
+}
+
+.hero-heading {
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: #000000;
+}
+
+.hero-heading .line {
+  display: block;
+}
+
+.hero-heading .line-accent {
+  font-weight: 500;
+}
+
+/* 按钮组 */
+.actions-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background-color: #000000;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: none;
+  letter-spacing: 0.02em;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: #000000;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.35);
+  letter-spacing: 0.02em;
+}
+
+.btn-outline:hover {
+  border-color: rgba(0, 0, 0, 0.6);
+}
+
+/* 右侧标签组 */
+.footer-right {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.tag-pill {
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #333333;
+  white-space: nowrap;
+}
+
+/* ========== 响应式布局 ========== */
+
+/* Mobile First — 视频 80% 居中，导航更小，内容竖排 */
+.video-wrapper {
+  width: 80%;
+  height: 80%;
+}
+
+.navbar {
+  padding: 16px;
+}
+
+.menu-circle {
+  width: 24px;
+  height: 24px;
+}
+
+.brand-text {
+  display: none;
+}
+
+.footer-content {
+  padding: 32px 16px 40px;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.hero-heading {
+  font-size: clamp(2rem, 8vw, 4.5rem);
+}
+
+.footer-content {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 28px;
+}
+
+.footer-right {
+  justify-content: flex-start;
+}
+
+/* Desktop 768px+ — 视频 100% 填满，所有元素可见，内容横排对齐底部 */
+@media (min-width: 768px) {
+  .video-wrapper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .navbar {
+    padding: 24px 32px;
+  }
+
+  .brand-text {
+    display: inline;
+  }
+
+  .menu-circle {
+    width: 26px;
+    height: 26px;
+  }
+
+  .footer-content {
+    padding: 40px 32px 48px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .footer-left {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .hero-heading {
+    font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+  }
+
+  .footer-right {
+    flex-shrink: 0;
+    padding-top: 0;
+  }
+}
+
+/* ========== 通用 Section 样式 ========== */
+
+.section-eyebrow {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: #000000;
+}
+
+/* ========== 项目板块 ========== */
+
+.projects {
+  background-color: #ffffff;
+  padding: 80px 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-head {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.projects .section-title {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.project-card {
+  background-color: #F4F4F6;
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: border-color 0.2s ease;
+}
+
+.project-card:hover {
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-tag {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.5);
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 999px;
+  padding: 4px 10px;
+}
+
+.card-status {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.card-title {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #000000;
+}
+
+.card-desc {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.card-link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #000000;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+/* ========== 关于板块 ========== */
+
+.about {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 56px 32px;
+}
+
+.about-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.about-left {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.about .section-eyebrow {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.about-name {
+  font-weight: 300;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.about-role {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 400;
+}
+
+.about-para {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 560px;
+}
+
+@media (min-width: 768px) {
+  .project-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .projects {
+    padding: 120px 32px;
+  }
+
+  .about-inner {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .about-para {
+    max-width: 440px;
+  }
+}
+
+/* ========== 关于板块二维码 ========== */
+
+/* 移动端：解除横向 flex-basis 440px 对纵向高度的撑破 */
+.about-mid {
+  flex: 0 1 auto;
+}
+
+@media (min-width: 768px) {
+  /* 桌面横排：固定中间独白列 440px */
+  .about-mid {
+    flex: 0 1 440px;
+  }
+}
+
+.about-qr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.about-qr .qr-image {
+  width: 160px;
+  height: 160px;
+  border-radius: 16px;
+  display: block;
+}
+
+.about-qr .qr-caption {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.02em;
+}
+
+@media (min-width: 768px) {
+  .about-qr {
+    flex-shrink: 0;
+    padding-top: 4px;
+  }
+}
