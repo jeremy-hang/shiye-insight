@@ -6,6 +6,7 @@ export default function About() {
   return (
     <section className="about" id="about">
       <div className="about-inner">
+        {/* 左：大字品牌锚点 */}
         <motion.div
           className="about-left"
           initial={{ y: 20, opacity: 0 }}
@@ -13,11 +14,11 @@ export default function About() {
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: easeCurve }}
         >
-          <span className="section-eyebrow">关于识野</span>
-          <h2 className="about-name">Jeremy</h2>
-          <p className="about-role">识野 Insight 的主理人。</p>
+          <span className="about-eyebrow">关于</span>
+          <h2 className="about-name">识野 Insight</h2>
         </motion.div>
 
+        {/* 中：品牌宣言（唯一主体文字） */}
         <motion.div
           className="about-mid"
           initial={{ y: 20, opacity: 0 }}
@@ -26,10 +27,14 @@ export default function About() {
           transition={{ delay: 0.15, duration: 0.8, ease: easeCurve }}
         >
           <p className="about-para">
-            热点是表象，成长是主线。这个站点既是导航站，也是笔记本——把 AI 工具、市场信号与个人方法放进同一片旷野，看它们彼此长在一起。
+            识野拒绝信息噪音与碎片化认知，专注于洞察、连接与沉淀，让每一次输入都转化为更深的理解与思考。
+          </p>
+          <p className="about-para">
+            在瞬息万变的世界里，保持清醒，向内扎根，向野生长，探索认知的无限边界。
           </p>
         </motion.div>
 
+        {/* 右：公众号 */}
         <motion.div
           className="about-qr"
           id="about-grid"

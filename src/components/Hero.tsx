@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { Plus, X, User } from 'lucide-react'
+import HostModal from './HostModal'
 
 const easeCurve = [0.16, 1, 0.3, 1] as const
 
@@ -40,6 +41,7 @@ function scrollTo(target: string) {
 
 export default function Hero() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [hostOpen, setHostOpen] = useState(false)
 
   const handleNav = (target: string) => {
     setMenuOpen(false)
@@ -138,17 +140,22 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* 右上角：认识我 → 平滑滚到 About 黑底板块 */}
+        {/* 右上角：主理人 → 弹出独白信 + 照片 */}
         <button
           className="know-btn"
-          onClick={() => scrollTo('#about')}
-          aria-label="认识我"
+          onClick={() => setHostOpen(true)}
+          aria-label="主理人"
         >
           <span className="know-circle">
             <User size={12} strokeWidth={2.5} color="#000000" />
           </span>
-          <span className="know-label">认识我</span>
+          <span className="know-label">主理人</span>
         </button>
+
+        {/* 主理人独白弹窗 */}
+        <AnimatePresence>
+          {hostOpen && <HostModal onClose={() => setHostOpen(false)} />}
+        </AnimatePresence>
       </motion.header>
 
       {/* 底部内容区 */}
