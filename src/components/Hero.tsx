@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { Plus, X } from 'lucide-react'
+import { Plus, X, User } from 'lucide-react'
 
 const easeCurve = [0.16, 1, 0.3, 1] as const
 
@@ -137,9 +137,19 @@ export default function Hero() {
             </motion.div>
           </div>
         </div>
-      </motion.header>
 
-      {/* 占位注释 — 菜单已整合进 nav-left */}
+        {/* 右上角：认识我 → 平滑滚到 About 黑底板块 */}
+        <button
+          className="know-btn"
+          onClick={() => scrollTo('#about')}
+          aria-label="认识我"
+        >
+          <span className="know-circle">
+            <User size={12} strokeWidth={2.5} color="#000000" />
+          </span>
+          <span className="know-label">认识我</span>
+        </button>
+      </motion.header>
 
       {/* 底部内容区 */}
       <motion.footer
