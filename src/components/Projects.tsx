@@ -23,17 +23,18 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: '识野智库',
-    en: 'MindScape Hub',
+    title: '识野 Hub',
+    en: 'AI Discovery Center',
     tag: 'Web',
     status: '开发中',
     hook: 'AI 生态与生产力工具矩阵。',
     desc: '深度筛选、结构化分类与智能推荐全球前沿 AI 学习资源、应用生态与效率工具。按实际工作场景精准打标，提供真实评测与上手门槛评估，打造高价值的智能生产力导航入口。',
     preview: '/preview-mindscape-hub.jpg',
+    link: 'https://hub.jeremyhang.online',
     details: [
       {
         label: '为什么做',
-        body: 'AI 工具爆炸式增长，但 90% 是噪音。大多数人卡在两个问题上：不知道有什么能用，更不知道哪个值得花时间。识野智库把「发现成本」打到最低——你负责提效，它负责过滤。',
+        body: 'AI 工具爆炸式增长，但 90% 是噪音。大多数人卡在两个问题上：不知道有什么能用，更不知道哪个值得花时间。识野 Hub 把「发现成本」打到最低——你负责提效，它负责过滤。',
       },
       {
         label: '功能范围',

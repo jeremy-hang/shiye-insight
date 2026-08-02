@@ -5,9 +5,9 @@ import { X } from 'lucide-react'
 const easeCurve = [0.16, 1, 0.3, 1] as const
 
 const letter = [
-  '我始终相信在这个AI的时代不缺信息，不缺工具，缺的是帮助我们理解世界、形成判断、持续成长的方式。',
-  '创立识野，是希望打造一个属于每个人的认知空间，让知识不再只是被收藏的信息，而是能够沉淀为洞察、转化为行动的力量。',
-  '愿我们在变化的世界里保持好奇，向内扎根，向野生长。',
+  '我相信在这个AI的时代不缺信息，不缺工具，缺的是帮助我们理解世界、形成判断、持续成长的方式。',
+  '识野希望打造一个属于每个人的认知空间，让知识不再只是被收藏的信息，而是能够沉淀为洞察、转化为行动的力量。',
+  '愿我们在变化的世界里保持热爱，向内扎根，向野生长。',
 ]
 
 export default function HostModal({ onClose }: { onClose: () => void }) {
@@ -55,7 +55,7 @@ export default function HostModal({ onClose }: { onClose: () => void }) {
           </div>
 
           <div className="host-text">
-            <span className="host-eyebrow">主理人的话</span>
+            <span className="host-eyebrow">主理人寄语</span>
             {letter.map((para, i) => (
               <p key={i} className="host-para">{para}</p>
             ))}
