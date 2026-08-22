@@ -58,7 +58,7 @@ const projects: Project[] = [
     hook: '高定制化产业与竞品情报系统。',
     desc: '自动化全网扫描行业上下游动态、商业热点与竞品厂商全景变化。基于多维模型进行实时降噪与价值萃取，帮助企业与决策者实时掌握市场脉搏，实现数据驱动的敏捷决策。',
     preview: '/preview-pulseradar.png',
-    link: 'https://0bfdd3986e2540f4a75f846d942f0623.gz2.agentos-app.net/',
+    link: 'https://jeremy-hang.github.io/ai-daily/',
     details: [
       {
         label: '为什么做',
