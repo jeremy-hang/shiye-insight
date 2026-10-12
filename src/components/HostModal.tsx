@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { motion } from 'motion/react'
 import { X } from 'lucide-react'
+import ContactHost from './ContactHost'
 
 const easeCurve = [0.16, 1, 0.3, 1] as const
 
@@ -60,6 +61,7 @@ export default function HostModal({ onClose }: { onClose: () => void }) {
               <p key={i} className="host-para">{para}</p>
             ))}
             <p className="host-sig">—— Jeremy</p>
+            <ContactHost />
           </div>
         </div>
       </motion.div>

@@ -1,4 +1,5 @@
 import { motion } from 'motion/react'
+import ContactQRCodes from './ContactQRCodes'
 
 const easeCurve = [0.16, 1, 0.3, 1] as const
 
@@ -34,7 +35,7 @@ export default function About() {
           </p>
         </motion.div>
 
-        {/* 右：公众号 */}
+        {/* 右：公众号与主理人微信 */}
         <motion.div
           className="about-qr"
           id="about-grid"
@@ -43,8 +44,7 @@ export default function About() {
           viewport={{ once: true }}
           transition={{ delay: 0.25, duration: 0.8, ease: easeCurve }}
         >
-          <img className="qr-image" src="/wechat-qr.jpeg" alt="识野 Insight 微信公众号二维码" />
-          <span className="qr-caption">识野 Insight · 微信公众号</span>
+          <ContactQRCodes />
         </motion.div>
       </div>
     </section>

@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { ArrowUpRight, ExternalLink, X } from 'lucide-react'
+import { ArrowUpRight, X } from 'lucide-react'
+
+import ContactHost from './ContactHost'
+import ContactQRCodes from './ContactQRCodes'
 
 const easeCurve = [0.16, 1, 0.3, 1] as const
 
@@ -17,174 +20,67 @@ interface Project {
   hook: string
   desc: string
   preview?: string
-  link?: string
+  follow?: boolean
   details: DetailBlock[]
 }
 
 const projects: Project[] = [
   {
-    title: '识野 AI 团队空间',
-    en: 'Mindscape',
-    tag: 'AI 协同平台',
-    status: '开发中',
-    hook: '让 AI 能力进入团队工作的全过程。',
-    desc: '面向内部团队的 AI 协同工作平台。把具备岗位职责的数字员工、真人任务、企业知识、标准流程与执行记录放进同一个工作空间，让成员从提出需求开始，持续完成资料准备、分工执行、成果交接和人工验收。',
-    preview: '/preview-team-space.jpg',
+    title: '识野 AI 团队空间', en: 'Mindscape', tag: 'AI 团队协作', status: '持续迭代',
+    hook: '让数字员工与真人，在同一个空间协同工作。',
+    desc: '把数字员工、团队任务、知识资源与工作流程放进一个协作空间。从需求提出、岗位分工到成果交接，让 AI 能力进入团队日常工作，让执行过程和责任更清楚。',
+    preview: '/projects/ai-team-space.png',
     details: [
-      {
-        label: '为什么做',
-        body: 'AI 已经进入个人工作，但团队仍缺一套把需求、资料、责任和成果连接起来的方法。每人重复写提示词，背景与标准不一致；会议有纪要却没落实；模型说「完成」也不等于工具真的执行成功。识野要消掉的就是这部分组织成本。',
-      },
-      {
-        label: '数字员工体系',
-        body: '11 类内置岗位：识小野（协调）、产品经理、核价专员、政策助手、行政助手、市场资讯专员、会议助手、客户洞察专员、技术支持专员、数据分析专员、工作助理。每个岗位有明确职责、维护者、生效版本与授权资源——岗位名称本身不赋予任何工具或数据权限。',
-      },
-      {
-        label: '技术路线',
-        body: '持久化任务队列 + 后台执行器。数字工作与真人任务共用一套状态机，工作、事件、成果、动作回执分开保存；租约、请求键与取消检查共同降低重复执行与状态失真的风险。前端以办公室场景作为成员与工作状态的展示入口。',
-      },
-      {
-        label: '当前状态',
-        body: '产品 v0.8 / 发布构建 1.0.4，内部部署运行中。已跑通岗位配置、团队空间、会议纪要与行动项发布、日报周报、企业背景研究、服务器选型核价等流程闭环。会议音频直连转写与企业问数多数据源适配列为下一阶段。',
-      },
+      { label: '数字员工', body: '为不同岗位配置职责、资料、技能与标准流程，让研究、分析、会议整理、内容制作等工作有合适的协作伙伴。' },
+      { label: '团队协作', body: '在同一个空间查看成员、任务与工作动态，跟进执行进度、交接成果，并通过日报周报整理团队工作。' },
     ],
   },
   {
-    title: '识野 Hub',
-    en: 'AI Discovery Center',
-    tag: 'Web',
-    status: '开发中',
-    hook: 'AI 生态与生产力工具矩阵。',
-    desc: '深度筛选、结构化分类与智能推荐全球前沿 AI 学习资源、应用生态与效率工具。按实际工作场景精准打标，提供真实评测与上手门槛评估，打造高价值的智能生产力导航入口。',
-    preview: '/preview-mindscape-hub.jpg',
-    link: 'https://hub.jeremyhang.online',
+    title: '业务罗盘', en: 'Business Compass', tag: '经营分析', status: '持续迭代',
+    hook: '看清业务进度，让经营判断有据可依。',
+    desc: '把任务达成、回款进度、区域表现、伙伴档案、政策跟进与库存情况汇聚成统一的经营视图。从全国概览到具体业务问题，帮助团队识别差距、明确重点、跟进行动。',
+    preview: '/projects/business-compass.png',
     details: [
-      {
-        label: '为什么做',
-        body: 'AI 工具爆炸式增长，但 90% 是噪音。大多数人卡在两个问题上：不知道有什么能用，更不知道哪个值得花时间。识野 Hub 把「发现成本」打到最低——你负责提效，它负责过滤。',
-      },
-      {
-        label: '功能范围',
-        body: '按真实工作场景组织：写作、编程、研究、设计、数据分析、自动化。每个条目附带真实评测、上手门槛评级（开箱即用 / 轻度学习 / 需要折腾）、适用人群与替代方案。',
-      },
-      {
-        label: '技术路线',
-        body: '前端 React + Vite，数据源聚合公开 API 与社区榜单，结构化打标后人工抽检。后续引入高质量社区投稿与版本追踪，让工具库自我进化。',
-      },
-      {
-        label: '当前状态',
-        body: '信息架构与打标体系已定，站点骨架开发中。预计优先上线工具导航与场景推荐两个核心模块。',
-      },
+      { label: '经营视图', body: '按季度或全年查看任务达成，结合区域分布、趋势与回款缺口，掌握经营进展与需要优先关注的问题。' },
+      { label: '业务跟进', body: '串联伙伴档案、政策跟进与库存管理，让数据分析回到具体业务场景；支持本机数据处理与离线导出。' },
     ],
   },
   {
-    title: 'Insight BI',
-    en: '渠道经营决策中心',
-    tag: 'BI 决策',
-    status: '开发中',
-    hook: '面向团队的轻量级 BI 决策支持系统。',
-    desc: '面向团队的轻量级 BI 决策支持系统，也是团队数字化应用的统一入口。为日常经营监测、问题分析和管理决策提供支撑，覆盖经营概览、趋势洞察、区域分析、伙伴画像、库存监控、策略跟进六大核心模块。',
-    preview: '/preview-insight-bi.jpg',
+    title: 'Insight Hub', en: 'AI Discovery Center', tag: 'AI 资源导航', status: '持续迭代',
+    hook: '发现工具，连接知识，探索智能世界。',
+    desc: '按领域与实际场景组织 AI 工具、智能体、Skills、学习资料和行业资讯。通过分类导航、站点筛选与智能生态地图，缩短寻找资源的路径，让探索与日常使用更顺手。',
+    preview: '/projects/insight-hub.png',
     details: [
-      {
-        label: '为什么做',
-        body: '团队经营数据散落在不同报表和系统里，决策者要花大量时间拼凑碎片才能看清全局。Insight BI 把分散的数据聚合成统一的决策视图，让管理者一眼看到该看什么、该做什么。',
-      },
-      {
-        label: '核心能力',
-        body: '经营概览综合达成率、回款进度、项目转化、库存周转四大核心指标；趋势洞察打通收入与毛利率双维度；区域表现用热力图+能力雷达图可视化；伙伴画像按区域、业务结构、机会项目分层跟踪。',
-      },
-      {
-        label: '统一入口',
-        body: '不只是报表工具——作为团队数字化应用的统一入口，集成库存监控、重点任务进度、机会项目跟踪、区域经营概览，减少切换成本，把分析时间还给决策。',
-      },
-      {
-        label: '当前状态',
-        body: '核心看板与数据管线已完成，正接入真实业务数据做端到端验证。目标先跑通一个完整业务周期再做功能扩展。',
-      },
+      { label: '场景导航', body: '覆盖对话与智能体、文本与办公、图像与设计、音视频、编程与算力等领域，从实际需求出发发现适合的工具。' },
+      { label: '发现与收藏', body: '结合完整导航图谱、站点筛选、多入口搜索与常用站点收藏，把分散的资源整理成自己的使用路径。' },
     ],
   },
   {
-    title: '脉动雷达',
-    en: 'PulseRadar',
-    tag: '商业情报',
-    status: '开发中',
-    hook: '高定制化产业与竞品情报系统。',
-    desc: '自动化全网扫描行业上下游动态、商业热点与竞品厂商全景变化。基于多维模型进行实时降噪与价值萃取，帮助企业与决策者实时掌握市场脉搏，实现数据驱动的敏捷决策。',
-    preview: '/preview-pulseradar.png',
-    link: 'https://jeremy-hang.github.io/ai-daily/',
+    title: '墨台', en: 'Motai', tag: 'AI 内容创作', status: '持续迭代',
+    hook: '从一份灵感，写出自己的判断。',
+    desc: '把选题灵感、写手风格与文章创作放在同一个工作台。选择热点、搜索新闻或输入主题，结合写手样本与账号定位辅助创作，并整理待发布与已发布内容，让写作形成持续的工作流程。',
+    preview: '/projects/motai.png',
     details: [
-      {
-        label: '为什么做',
-        body: '决策质量取决于信息质量。但碎片化的资讯流里，信号和噪音的比例持续恶化——真正值得看的 5%，被 95% 的重复和注水内容淹没。脉动雷达的目标是把信噪比翻过来。',
-      },
-      {
-        label: '核心能力',
-        body: '全网持续扫描行业上下游动态、竞品厂商产品/定价/人事变化，多维打分模型做第一轮降噪，萃取后的情报按「影响程度 × 时效性」排序推送，拒绝平均用力。',
-      },
-      {
-        label: '多维模型',
-        body: '来源可信度、传播热度、业务相关性、时效衰减、竞争影响——五个维度加权评分，输出分级关注清单，而不是一份流水账。',
-      },
-      {
-        label: '当前状态',
-        body: '评分模型与数据源管线设计中，先做垂直行业 MVP 验证价值密度，再泛化。',
-      },
+      { label: '从灵感开始', body: '收藏热点与新闻，或直接输入想写的主题。在灵感与创作之间建立连接，也能从上次停下的地方继续编辑。' },
+      { label: '保留自己的表达', body: '结合账号定位、目标读者与写手样本，提炼结构和语气，再通过试写与编辑确认风格，整理文章的创作和发布状态。' },
     ],
   },
   {
-    title: '识野空间',
-    en: 'MindScape Space',
-    tag: '知识操作系统',
-    status: '规划中',
-    hook: '基于 LLM Wiki 架构的新一代 AI 知识操作系统。',
-    desc: '通过智能感知、理解与结构化组织个人及企业知识资产，构建可持续进化的智能知识大脑。打破信息孤岛，赋能个体与组织实现深度知识沉淀、价值挖掘与高质决策。',
+    title: '识野 Link', en: 'Private Workspace', tag: '私密连接管理', status: '持续迭代',
+    hook: '独立授权，清楚掌握每份连接的使用。',
+    desc: '面向个人使用的私密连接管理工作台，把设备授权、连接用量与操作记录集中管理。通过本机入口访问，按需分配连接，减少零散配置带来的管理成本。',
+    preview: '/projects/shiye-link.png',
     details: [
-      {
-        label: '为什么做',
-        body: '笔记软件解决了「存」，没解决「用」。知识进了 Notion 就再没出来过——信息孤岛的本质不是找不到，而是系统不理解你存了什么。LLM 让机器第一次有可能真正「读懂」你的知识资产。',
-      },
-      {
-        label: '核心理念',
-        body: 'LLM Wiki：每条知识不是静态文本，而是可被智能体持续阅读、关联、重组的活节点。你用自然语言提问，系统自动从你的知识库里组织答案——带引用、有脉络。',
-      },
-      {
-        label: '关键特性',
-        body: '双链网络可视化、自然语言召回、自动知识聚簇、个人与团队双模式。知识不再依赖你记住「放在哪个文件夹」——它自己长出来。',
-      },
-      {
-        label: '当前状态',
-        body: '概念验证阶段。先在个人知识管理场景跑通最小闭环，验证「AI 重组知识」的实际价值后再产品化。',
-      },
+      { label: '设备与授权', body: '为设备独立分配连接，管理使用者备注、授权期限与用量额度，按需调整授权状态。' },
+      { label: '用量与记录', body: '集中查看本月与每日用量、连接状态和最近活动，通过管理记录追踪授权与配置变更。' },
     ],
   },
   {
-    title: '识野 AI 会议纪要',
-    en: 'Meeting Minutes AI',
-    tag: '效率工具',
-    status: '开发中',
-    hook: 'AI 一键生成标准格式会议纪要。',
-    desc: '上传会议转录文本或粘贴原文，通过 AI 大模型一键生成标准格式会议纪要。支持腾讯会议 GMT 格式转录、多种 AI 模型灵活切换（DeepSeek / 通义千问 / Kimi / 智谱），导出 Excel 结构化纪要。',
-    preview: '/preview-meeting-minutes.png',
-    link: 'https://jeremy-hang.github.io/meeting-minutes-ai/',
-    details: [
-      {
-        label: '为什么做',
-        body: '每次开完会都要手动整理纪要，格式不统一、重点不突出，花时间还容易漏。AI 会议纪要把「会议结束到可发出的纪要」压缩到 30 秒内。',
-      },
-      {
-        label: '核心流程',
-        body: '三步闭环：导入或粘贴转录文本 → 选择 AI 模型（API 直连或手动粘贴都可）→ 预览并可逐字编辑 → 一键导出标准格式 Excel。支持千人级大场转录，也能处理半小时内的简短例会。',
-      },
-      {
-        label: '模型支持',
-        body: '兼容 DeepSeek、通义千问、Kimi、智谱等主流大模型 API，支持自定义 base 地址或完整 chat/completions 端点，不锁定单一供应商。',
-      },
-      {
-        label: '当前状态',
-        body: '基础功能已可用，正优化长会议分段处理与多会话并行支持，计划加入说话人分离标注。',
-      },
-    ],
+    title: '更多项目，持续生长', en: 'More to Come', tag: '探索与实践', status: '持续更新',
+    hook: '更多尝试，正在从想法走向日常。',
+    desc: '围绕 AI 协作、业务效率与个人创作，持续探索并打磨新的工具。更多项目进展与实践记录，请关注「识野 Insight」微信公众号。',
+    follow: true,
+    details: [],
   },
 ]
 
@@ -212,7 +108,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
       onClick={onClose}
     >
       <motion.div
-        className="modal-panel"
+        className="modal-panel project-modal"
         initial={{ y: 32, opacity: 0, scale: 0.98 }}
         animate={{ y: 0, opacity: 1, scale: 1 }}
         exit={{ y: 16, opacity: 0, scale: 0.98 }}
@@ -245,18 +141,6 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
           </div>
         )}
 
-        {project.link && (
-          <a
-            className="modal-live-link"
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span>访问在线预览</span>
-            <ExternalLink size={13} strokeWidth={2} />
-          </a>
-        )}
-
         {project.details.map((d) => (
           <div className="modal-block" key={d.label}>
             <h4 className="modal-block-label">{d.label}</h4>
@@ -264,7 +148,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
           </div>
         ))}
 
-        <p className="modal-foot">More soon · 持续建设中</p>
+        {project.follow ? <ContactQRCodes /> : <ContactHost intro="想进一步了解或使用这个项目？" />}
       </motion.div>
     </motion.div>
   )
@@ -299,7 +183,7 @@ function ProjectCard({
       <p className="card-hook">{project.hook}</p>
       <p className="card-desc">{project.desc}</p>
       <button className="card-link" onClick={onOpen}>
-        <span>查看详情</span>
+        <span>{project.follow ? '关注项目动态' : '查看详情'}</span>
         <ArrowUpRight size={14} strokeWidth={2} />
       </button>
     </motion.article>
@@ -319,7 +203,7 @@ export default function Projects() {
         transition={{ duration: 0.8, ease: easeCurve }}
       >
         <span className="section-eyebrow">在做的项目</span>
-        <h2 className="section-title">六件正在发酵的事</h2>
+        <h2 className="section-title">把想法，做成可用的工具</h2>
       </motion.div>
 
       <div className="project-grid">
